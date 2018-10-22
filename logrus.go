@@ -7,6 +7,7 @@ import (
 )
 
 var _ Logger = Logrus{}
+var _ FieldLogger = Logrus{}
 var _ Outable = Logrus{}
 
 // Logrus is a Logger implementation backed by sirupsen/logrus
@@ -23,11 +24,11 @@ func (l Logrus) SetOutput(w io.Writer) {
 }
 
 // WithField returns a new Logger with the field added
-func (l Logrus) WithField(s string, i interface{}) Logger {
+func (l Logrus) WithField(s string, i interface{}) FieldLogger {
 	return Logrus{l.FieldLogger.WithField(s, i)}
 }
 
 // WithFields returns a new Logger with the fields added
-func (l Logrus) WithFields(m map[string]interface{}) Logger {
+func (l Logrus) WithFields(m map[string]interface{}) FieldLogger {
 	return Logrus{l.FieldLogger.WithFields(m)}
 }
