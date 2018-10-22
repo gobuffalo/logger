@@ -31,7 +31,7 @@ type Logger interface {
 
 // NewLogger based on the specified log level, defaults to "debug".
 // See `New` for more details.
-func NewLogger(level string) Logger {
+func NewLogger(level string) FieldLogger {
 	lvl, err := logrus.ParseLevel(level)
 	if err != nil {
 		lvl = logrus.DebugLevel
@@ -45,7 +45,7 @@ func NewLogger(level string) Logger {
 /*
 	Example: time="2016-12-01T21:02:07-05:00" level=info duration=225.283µs human_size="106 B" method=GET path="/" render=199.79µs request_id=2265736089 size=106 status=200
 */
-func New(lvl Level) Logger {
+func New(lvl Level) FieldLogger {
 	dev := envy.Get("GO_ENV", "development") == "development"
 	l := logrus.New()
 	l.Level = lvl
