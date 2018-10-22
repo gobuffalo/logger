@@ -5,11 +5,16 @@ import (
 	"github.com/sirupsen/logrus"
 )
 
+// FieldLogger interface
+type FieldLogger interface {
+	Logger
+	WithField(string, interface{}) Logger
+	WithFields(map[string]interface{}) Logger
+}
+
 // Logger interface is used throughout Buffalo
 // apps to log a whole manner of things.
 type Logger interface {
-	WithField(string, interface{}) Logger
-	WithFields(map[string]interface{}) Logger
 	Debugf(string, ...interface{})
 	Infof(string, ...interface{})
 	Printf(string, ...interface{})
