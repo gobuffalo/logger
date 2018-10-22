@@ -1,12 +1,25 @@
 package logger
 
-import "github.com/sirupsen/logrus"
+import (
+	"io"
+
+	"github.com/sirupsen/logrus"
+)
 
 var _ Logger = Logrus{}
+var _ Outable = Logrus{}
 
 // Logrus is a Logger implementation backed by sirupsen/logrus
 type Logrus struct {
 	logrus.FieldLogger
+}
+
+// SetOutput will try and set the output of the underlying
+// logrus.FieldLogger if it can
+func (l Logrus) SetOutput(w io.Writer) {
+	if lg, ok := l.FieldLogger.(Outable); ok {
+		lg.SetOutput(w)
+	}
 }
 
 // WithField returns a new Logger with the field added
