@@ -1,6 +1,8 @@
 package logger
 
 import (
+	"os"
+
 	"github.com/gobuffalo/envy"
 	"github.com/sirupsen/logrus"
 )
@@ -48,6 +50,7 @@ func NewLogger(level string) FieldLogger {
 func New(lvl Level) FieldLogger {
 	dev := envy.Get("GO_ENV", "development") == "development"
 	l := logrus.New()
+	l.SetOutput(os.Stdout)
 	l.Level = lvl
 	l.Formatter = &textFormatter{
 		ForceColors: dev,
