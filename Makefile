@@ -30,7 +30,6 @@ test:
 	make tidy
 
 ci-test:
-	make lint
 	$(GO_BIN) test -tags ${TAGS} -race ./...
 	make tidy
 
