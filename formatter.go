@@ -5,6 +5,7 @@ package logger
 import (
 	"bytes"
 	"fmt"
+	"runtime"
 	"sort"
 	"strings"
 	"sync"
