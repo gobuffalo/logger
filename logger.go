@@ -3,7 +3,6 @@ package logger
 import (
 	"os"
 
-	"github.com/gobuffalo/envy"
 	"github.com/sirupsen/logrus"
 )
 
@@ -31,6 +30,7 @@ type Logger interface {
 	Panic(...interface{})
 }
 
+// ParseLevel parses the string representation of a logger level to a Level.
 func ParseLevel(level string) (Level, error) {
 	l, err := logrus.ParseLevel(level)
 	return Level(l), err
@@ -53,7 +53,11 @@ func NewLogger(level string) FieldLogger {
 	Example: time="2016-12-01T21:02:07-05:00" level=info duration=225.283µs human_size="106 B" method=GET path="/" render=199.79µs request_id=2265736089 size=106 status=200
 */
 func New(lvl Level) FieldLogger {
-	dev := envy.Get("GO_ENV", "development") == "development"
+	env := os.Getenv("GO_ENV")
+	if env == "" {
+		env = "development"
+	}
+	dev := env == "development"
 	l := logrus.New()
 	l.SetOutput(os.Stdout)
 	l.Level = lvl
