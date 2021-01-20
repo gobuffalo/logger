@@ -1,5 +1,9 @@
 name: Tests
-on: [push, pull_request]
+on: 
+  push:
+  pull_request:
+    branches:
+    - '**:**'
 jobs:
 
   tests-on:
