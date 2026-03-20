@@ -1,9 +1,10 @@
 module github.com/gobuffalo/logger
 
-go 1.16
+go 1.25
 
 require (
 	github.com/sirupsen/logrus v1.9.1
-	github.com/stretchr/testify v1.8.0 // indirect
 	golang.org/x/term v0.0.0-20220722155259-a9ba230a4035
 )
+
+require golang.org/x/sys v0.0.0-20220722155257-8c9f86f7a55f // indirect

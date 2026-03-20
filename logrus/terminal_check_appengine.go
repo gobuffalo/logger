@@ -1,6 +1,7 @@
+//go:build appengine
 // +build appengine
 
-package logger
+package logrus
 
 import (
 	"io"
