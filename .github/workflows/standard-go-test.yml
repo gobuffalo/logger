@@ -8,5 +8,5 @@ on:
 jobs:
   call-standard-test:
     name: Test
-    uses: gobuffalo/.github/.github/workflows/go-test.yml@4368e1c
+    uses: gobuffalo/.github/.github/workflows/go-test.yml@v1.8
     secrets: inherit
