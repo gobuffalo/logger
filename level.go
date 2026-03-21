@@ -1,5 +1,7 @@
 package logger
 
+import "fmt"
+
 // Level represents the logging level
 type Level uint32
 
@@ -41,4 +43,25 @@ func (level Level) String() string {
 	}
 
 	return "unknown"
+}
+
+// ParseLevel parses a string level into a Level.
+func ParseLevel(level string) (Level, error) {
+	switch level {
+	case "panic":
+		return PanicLevel, nil
+	case "fatal":
+		return FatalLevel, nil
+	case "error":
+		return ErrorLevel, nil
+	case "warn", "warning":
+		return WarnLevel, nil
+	case "info":
+		return InfoLevel, nil
+	case "debug":
+		return DebugLevel, nil
+	}
+
+	var l Level
+	return l, fmt.Errorf("not a valid Level: %q", level)
 }
