@@ -1,4 +1,4 @@
-package logger
+package logrus
 
 // I really don't want to have this, but until (if) https://github.com/sirupsen/logrus/pull/606 is merged we're stuck with all this code. And yes, this is ALL needed just to remove some blank space in the logs
 
